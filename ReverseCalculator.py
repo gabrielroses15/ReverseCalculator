@@ -8,17 +8,35 @@ def calcular(expressao):
         elif operador == '-':
             return operando1 + (-operando2)
         elif operador == '*' or operador == "x":
-            resultado = operando2
-            while operando1 > 0:
-                resultado = resultado + operando1
+            decimal = 0.0
+            resultado = 0
+            while operando1 > 0.9:
+                resultado = resultado + operando
                 operando1 -= 1
+            if operando1 < 1 and operando1 > 0:
+                dividir = 0
+                op = 0
+                while op != 1:
+                    op = op + operando1
+                    dividir = dividir + 1
+                decimal = operando2 / dividir
+            resultado = decimal + float(resultado)
             return resultado
         elif operador == '/' or operador == '÷':
             dividir = operando1
             resultado = 0
+            decimais = 0
             while dividir > 0:
-                dividir = dividir - operando2
-                resultado = resultado + 1
+                if dividir > operando2:
+                    dividir = dividir - operando2
+                    resultado = resultado + 1
+                else:
+                    dividir = dividir * 10
+                    while dividir > 0:
+                        dividir = dividir - operando2
+                        decimais = decimais + 1
+            resultado = str(resultado) + "." + str(decimais)
+            resultado = float(resultado)
             return resultado
         else:
             raise ValueError(f'Operação inválida: {operador}')
@@ -67,3 +85,6 @@ try:
     print(f"Resultado da expressão '{expressao}': {resultado}")
 except Exception as e:
     print(f"Erro: {e}")
+
+
+#10 * 55 / 44 * 87 + 57999
